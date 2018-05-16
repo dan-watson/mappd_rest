@@ -69,6 +69,8 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     lumberjack (1.0.13)
+    mappd (0.0.3)
+      activerecord (>= 5.2.0)
     method_source (0.9.0)
     minitest (5.11.3)
     mustermann (1.0.2)
@@ -135,6 +137,7 @@ DEPENDENCIES
   byebug
   guard-rspec
   guard-rubocop
+  mappd
   mappd-rest!
   rake
   rspec

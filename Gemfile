@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rake'
 gem 'mappd'
+gem 'rake'
 gem 'sqlite3'
 
 group :development do

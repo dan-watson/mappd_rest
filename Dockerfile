@@ -24,7 +24,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Install gems
-ADD mappd-rest.gemspec /app/mappd-rest.gemspec
+ADD mappd_rest.gemspec /app/mappd_rest.gemspec
 ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
 ADD lib/ /app/lib
