@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mappd_rest (0.0.0)
+    mappd_rest (0.0.1)
       activerecord (>= 5.2.0)
       grape (>= 1.0.3)
 
