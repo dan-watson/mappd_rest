@@ -16,5 +16,12 @@ describe 'Rack Test' do
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body).length).to eq(2)
     end
+
+    it 'return one' do
+      get '/books/1'
+      expect(last_response).to be_ok
+      expect(JSON.parse(last_response.body)['title'])
+        .to eq('Wind in the willows')
+    end
   end
 end

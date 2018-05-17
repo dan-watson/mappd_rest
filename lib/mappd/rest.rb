@@ -11,5 +11,9 @@ module Mappd
     get '/:resource' do
       resource(params[:resource]).all
     end
+
+    get '/:resource/:id' do
+      resource(params[:resource]).find(params[:id])
+    end
   end
 end
