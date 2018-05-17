@@ -48,6 +48,17 @@ describe 'Rack Test' do
       expect(last_response.status).to eq(422)
     end
 
+    it 'updates one' do
+      put '/books/1', { title: 'Updated Book', year: 2012 }.to_json
+      expect(last_response.status).to eq(200)
+      expect(Book.find(1).title).to eq('Updated Book')
+    end
+
+    it 'does not update one' do
+      put '/books/1', { title: 'Updated Book', year: nil }.to_json
+      expect(last_response.status).to eq(422)
+    end
+
     it 'delete one' do
       delete '/books/1'
       expect(last_response).to be_ok

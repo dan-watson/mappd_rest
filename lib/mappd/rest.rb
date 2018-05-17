@@ -38,6 +38,11 @@ module Mappd
       resource(params[:resource]).create!(attributes)
     end
 
+    put '/:resource/:id' do
+      attributes = JSON.parse(params.first[0])
+      resource(params[:resource]).find(params[:id]).update!(attributes)
+    end
+
     delete '/:resource/:id' do
       resource(params[:resource]).find(params[:id])&.destroy
     end
