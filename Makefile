@@ -6,5 +6,7 @@ rspec:
 	docker-compose run ruby rspec
 lint:
 	docker-compose run ruby rubocop
+bash:
+	docker-compose run ruby bash
 release:
 

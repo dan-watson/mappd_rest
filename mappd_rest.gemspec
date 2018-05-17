@@ -1,8 +1,8 @@
 $LOAD_PATH.push File.expand_path('lib', __dir__)
-require 'mappd_rest/version'
+require 'mappd/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'mappd-rest'
+  s.name        = 'mappd_rest'
   s.version     = MappdRest::VERSION
   s.authors     = ['Dan Watson']
   s.email       = ['dan@paz.am']
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = 'You can expose ActiveRecord objects over REST.'
                   .gsub(/^ {4}/, '')
 
-  s.rubyforge_project = 'mappd-rest'
+  s.rubyforge_project = 'mappd_rest'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
