@@ -23,7 +23,7 @@ A gem that dynamically exposes REST endpoints for ActiveRecord models.
 
 * ~~Single model GET - e.g - /books~~
 * ~~Single model GET - e.g - /books/1~~
-* Single model POST - e.g - /books
+* ~~Single model POST - e.g - /books~~
 * Single model PATCH - e.g - /books/1
 * ~~Single model DELETE - e.g - /books/1~~
 * ~~Schema - e.g - /books/schema~~

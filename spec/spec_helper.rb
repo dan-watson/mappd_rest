@@ -1,6 +1,11 @@
 require File.expand_path('boot.rb', __dir__)
 
 RSpec.configure do |config|
+  config.full_backtrace = false
+  config.backtrace_exclusion_patterns = [
+    /bundle/
+  ]
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

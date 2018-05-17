@@ -2,6 +2,7 @@ ENV['RACK_ENV'] = 'test'
 require File.expand_path('spec_helper.rb', __dir__)
 
 require 'rack/test'
+require 'byebug'
 
 describe 'Rack Test' do
   include Rack::Test::Methods
@@ -34,6 +35,17 @@ describe 'Rack Test' do
     it 'does not return one' do
       get '/books/600'
       expect(last_response.status).to eq(404)
+    end
+
+    it 'creates one' do
+      post '/books', { title: 'New Book', year: 2012 }.to_json
+      expect(last_response.status).to eq(201)
+      expect(Book.find(3)).to be_present
+    end
+
+    it 'does not create one' do
+      post '/books', { title: 'New Book' }.to_json
+      expect(last_response.status).to eq(422)
     end
 
     it 'delete one' do
