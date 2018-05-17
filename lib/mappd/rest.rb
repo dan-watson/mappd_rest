@@ -19,6 +19,13 @@ module Mappd
         resource.all
       end
 
+      def limiter(relation)
+        return relation unless relation.is_a?(ActiveRecord::Relation)
+        relation = relation.offset(params[:offset]) if params[:offset]
+        relation = relation.limit(params[:limit]) if params[:limit]
+        relation
+      end
+
       def find
         resource.find(params[:id])
       end
@@ -55,7 +62,7 @@ module Mappd
     end
 
     get '/:resource' do
-      all
+      limiter(all)
     end
 
     get '/:resource/:id' do
@@ -72,7 +79,7 @@ module Mappd
                      relation.find(param.to_i)
                    end
       end
-      relation
+      limiter(relation)
     end
 
     post '/:resource' do

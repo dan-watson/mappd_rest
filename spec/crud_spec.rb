@@ -25,10 +25,24 @@ describe 'Rack Test' do
       expect(JSON.parse(last_response.body).length).to eq(3)
     end
 
+    it 'returns two offset by one' do
+      get '/books?limit=2&offset=1'
+      expect(last_response).to be_ok
+      result = JSON.parse(last_response.body)
+      expect(result.length).to eq(2)
+      expect(result.map { |i| i['id'] }).to eq([2, 3])
+    end
+
     it 'returs all from relationship' do
       get '/authors/1/books'
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body).length).to eq(2)
+    end
+
+    it 'returs all from relationship with limits' do
+      get '/authors/1/books?limit=2&offset=1'
+      expect(last_response).to be_ok
+      expect(JSON.parse(last_response.body).length).to eq(1)
     end
 
     it 'returns one from relationship' do

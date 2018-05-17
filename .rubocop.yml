@@ -12,3 +12,4 @@ Metrics/ModuleLength:
 Metrics/BlockLength:
   Exclude:
     - "**/*_spec.rb"
+    - "lib/mappd/rest.rb"

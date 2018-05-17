@@ -22,7 +22,6 @@ A gem that dynamically exposes REST endpoints for ActiveRecord models.
 ## Todo
 
 * Authentication Token - Code injection for AUTH TOKEN
-* Limiting - e.g /books?limit=10&skip=10
 
 ## Setup
 
@@ -65,6 +64,11 @@ Also you can drive down into nested data. In this example lets say a Post has a 
 | GET | /posts/:id/person/:id/posts |
 
 It does this by dynamically interpreting routes passed to the endpoint and calling the appropriate models and methods.
+
+You can also limit and offset any call that returns a collection.
+
+`/posts?limit=10&offset=10`  
+`/person/1/posts?limit=5&offset=5`
 
 ## Running
 
