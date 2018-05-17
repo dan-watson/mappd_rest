@@ -23,5 +23,21 @@ describe 'Rack Test' do
       expect(JSON.parse(last_response.body)['title'])
         .to eq('Wind in the willows')
     end
+
+    it 'does not return one' do
+      get '/books/600'
+      expect(last_response.status).to eq(404)
+    end
+
+    it 'delete one' do
+      delete '/books/1'
+      expect(last_response).to be_ok
+      expect { Book.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it 'does not delete one' do
+      delete '/books/600'
+      expect(last_response.status).to eq(404)
+    end
   end
 end
