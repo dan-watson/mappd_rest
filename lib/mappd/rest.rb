@@ -2,6 +2,14 @@ module Mappd
   class Rest < Grape::API
     format :json
 
+    cattr_accessor :auth_method
+
+    before do
+      unless Rest.auth_method.call(request.headers['X-Access-Token'])
+        error!('Access Denied', 401)
+      end
+    end
+
     rescue_from ActiveRecord::RecordNotFound do |e|
       error!(e, 404)
     end

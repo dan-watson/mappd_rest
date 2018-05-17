@@ -8,24 +8,32 @@ describe 'Rack Test' do
   include Rack::Test::Methods
 
   def app
+    Mappd::Rest.auth_method = lambda { |token|
+      # User.find_by_token(token)
+      token == 'TOKEN'
+    }
     Mappd::Rest
   end
 
-  context 'single entity' do
-    it 'returns status' do
+  context 'endpoints' do
+    before(:all) do
+      current_session.header 'X-Access-Token', 'TOKEN'
+    end
+
+    it 'returns schema for an entity' do
       schema = JSON.parse(File.read('spec/data/book_schema.json'))
       get '/books/schema'
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body)).to eq(schema)
     end
 
-    it 'returns all' do
+    it 'returns all for an entity' do
       get '/books'
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body).length).to eq(3)
     end
 
-    it 'returns two offset by one' do
+    it 'returns two offset by one for an entity' do
       get '/books?limit=2&offset=1'
       expect(last_response).to be_ok
       result = JSON.parse(last_response.body)
@@ -33,13 +41,13 @@ describe 'Rack Test' do
       expect(result.map { |i| i['id'] }).to eq([2, 3])
     end
 
-    it 'returs all from relationship' do
+    it 'returns all from a relationship' do
       get '/authors/1/books'
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body).length).to eq(2)
     end
 
-    it 'returs all from relationship with limits' do
+    it 'returns all from a relationship with limits' do
       get '/authors/1/books?limit=2&offset=1'
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body).length).to eq(1)
@@ -52,14 +60,14 @@ describe 'Rack Test' do
         .to eq('Wind in the willows')
     end
 
-    it 'returns deeply nested entity' do
+    it 'returns one from a deeply nested relationship' do
       get '/authors/1/books/1/author'
       expect(last_response).to be_ok
       expect(JSON.parse(last_response.body)['name'])
         .to eq('Dan')
     end
 
-    it 'return one' do
+    it 'returns one' do
       get '/books/1'
       expect(JSON.parse(last_response.body)['title'])
         .to eq('Wind in the willows')
@@ -92,7 +100,7 @@ describe 'Rack Test' do
       expect(last_response.status).to eq(422)
     end
 
-    it 'delete one' do
+    it 'deletes one' do
       delete '/books/1'
       expect(last_response).to be_ok
       expect { Book.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
