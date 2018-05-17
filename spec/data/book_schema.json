@@ -1,0 +1,14 @@
+[
+  {
+    "name":"id",
+    "type":"integer"
+  },
+  {
+    "name":"title",
+    "type":"string"
+  },
+  {
+    "name":"year",
+    "type":"integer"
+  }
+]

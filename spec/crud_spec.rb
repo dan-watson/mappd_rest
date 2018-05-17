@@ -11,6 +11,13 @@ describe 'Rack Test' do
   end
 
   context 'single entity' do
+    it 'returns status' do
+      schema = JSON.parse(File.read('spec/data/book_schema.json'))
+      get '/books/schema'
+      expect(last_response).to be_ok
+      expect(JSON.parse(last_response.body)).to eq(schema)
+    end
+
     it 'returns all' do
       get '/books'
       expect(last_response).to be_ok

@@ -12,6 +12,15 @@ module Mappd
       end
     end
 
+    get '/:resource/schema' do
+      resource(params[:resource]).columns.map do |column|
+        {
+          name: column.name,
+          type: column.type.to_s
+        }
+      end
+    end
+
     get '/:resource' do
       resource(params[:resource]).all
     end
