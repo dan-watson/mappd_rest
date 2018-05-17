@@ -1,6 +1,6 @@
 # MappdRest
 
-Note: Work in progress.
+[![Build Status](https://travis-ci.org/dan-watson/mappd_rest.svg?branch=master)](https://travis-ci.org/dan-watson/mappd_rest)
 
 A gem that dynamically exposes REST endpoints for ActiveRecord models.
 
