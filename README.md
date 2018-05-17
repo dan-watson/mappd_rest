@@ -22,13 +22,13 @@ A gem that dynamically exposes REST endpoints for ActiveRecord models.
 ## Setup
 
 ```
-  gem install mappd-rest
+  gem install mappd_rest
 ```
 
 Or add to your `Gemfile`:
 
 ```
-  gem 'mappd-rest'
+  gem 'mappd_rest'
 ```
 
 ## How it works
