@@ -11,13 +11,33 @@ module Mappd
     end
 
     helpers do
-      def resource(resource)
-        resource.singularize.titlecase.constantize
+      def resource
+        params[:resource].singularize.titlecase.constantize
+      end
+
+      def all
+        resource.all
+      end
+
+      def find
+        resource.find(params[:id])
+      end
+
+      def create!(attributes)
+        resource.create!(attributes)
+      end
+
+      def update!(attributes)
+        find.update!(attributes)
+      end
+
+      def destroy!
+        find&.destroy
       end
     end
 
     get '/:resource/schema' do
-      resource(params[:resource]).columns.map do |column|
+      resource.columns.map do |column|
         {
           name: column.name,
           type: column.type.to_s
@@ -26,25 +46,23 @@ module Mappd
     end
 
     get '/:resource' do
-      resource(params[:resource]).all
+      all
     end
 
     get '/:resource/:id' do
-      resource(params[:resource]).find(params[:id])
+      find
     end
 
     post '/:resource' do
-      attributes = JSON.parse(params.first[0])
-      resource(params[:resource]).create!(attributes)
+      create!(JSON.parse(params.first[0]))
     end
 
     put '/:resource/:id' do
-      attributes = JSON.parse(params.first[0])
-      resource(params[:resource]).find(params[:id]).update!(attributes)
+      update!(JSON.parse(params.first[0]))
     end
 
     delete '/:resource/:id' do
-      resource(params[:resource]).find(params[:id])&.destroy
+      destroy!
     end
   end
 end
