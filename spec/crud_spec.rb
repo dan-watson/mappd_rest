@@ -14,7 +14,7 @@ describe 'Rack Test' do
     it 'returns all' do
       get '/books'
       expect(last_response).to be_ok
-      expect(last_response.body).to eq('[]')
+      expect(JSON.parse(last_response.body).length).to eq(2)
     end
   end
 end

@@ -4,6 +4,21 @@ Note: Work in progress.
 
 A gem that dynamically exposes REST endpoints for ActiveRecord models.
 
+## Development
+
+### Prerequisites
+
+* Docker Community Edition - https://www.docker.com/community-edition
+* Make - https://www.gnu.org/software/make/
+
+### Setup
+
+* `make` will build the application ready for use.
+
+### Guard
+
+* `make guard` run both linting and testing whilst watching files
+
 ## Todo
 
 * Single model GET - e.g - /books
