@@ -34,6 +34,10 @@ module Mappd
       def destroy!
         find&.destroy
       end
+
+      def method?(param)
+        param.to_i.to_s != param
+      end
     end
 
     get '/:resource/schema' do
@@ -45,12 +49,30 @@ module Mappd
       end
     end
 
+    params do
+      requires :resource, type: String
+      optional :id, type: Integer
+    end
+
     get '/:resource' do
       all
     end
 
     get '/:resource/:id' do
       find
+    end
+
+    get '/:resource/:id/*' do
+      args = params[:splat][0].split('/')
+      relation = find
+      args.each_with_index do |param, index|
+        relation = if index.even? || method?(param)
+                     relation.send(param.to_sym)
+                   else
+                     relation.find(param.to_i)
+                   end
+      end
+      relation
     end
 
     post '/:resource' do

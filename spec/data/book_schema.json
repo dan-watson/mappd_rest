@@ -10,5 +10,9 @@
   {
     "name":"year",
     "type":"integer"
+  },
+  {
+    "name":"author_id",
+    "type":"integer"
   }
 ]

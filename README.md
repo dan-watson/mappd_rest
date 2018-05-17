@@ -21,17 +21,6 @@ A gem that dynamically exposes REST endpoints for ActiveRecord models.
 
 ## Todo
 
-* ~~Single model GET - e.g - /books~~
-* ~~Single model GET - e.g - /books/1~~
-* ~~Single model POST - e.g - /books~~
-* ~~Single model PATCH - e.g - /books/1~~
-* ~~Single model DELETE - e.g - /books/1~~
-* ~~Schema - e.g - /books/schema~~
-* Nested model GET - e.g - /books/likes
-* Nested model GET - e.g - /books/likes/1
-* Nested model POST - e.g - /books/likes
-* Nested model PATCH - e.g - /books/likes/1
-* Nested model DELETE - e.g - /books/likes/1
 * Authentication Token - Code injection for AUTH TOKEN
 * Limiting - e.g /books?limit=10&skip=10
 
@@ -65,6 +54,15 @@ Lets say you have two ActiveRecord models. Person and Post. By either mounting t
 | POST | /post |
 | DELETE | /post/:id |
 | PUT | /post/:id |
+
+Also you can drive down into nested data. In this example lets say a Post has a Person and a Person has many Posts. It would create the following endpoints.
+
+
+| METHOD | ENDPOINT |
+| --- | --- |
+| GET | /posts/:id/person |
+| GET | /posts/:id/person/:id |
+| GET | /posts/:id/person/:id/posts |
 
 It does this by dynamically interpreting routes passed to the endpoint and calling the appropriate models and methods.
 

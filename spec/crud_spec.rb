@@ -22,12 +22,31 @@ describe 'Rack Test' do
     it 'returns all' do
       get '/books'
       expect(last_response).to be_ok
+      expect(JSON.parse(last_response.body).length).to eq(3)
+    end
+
+    it 'returs all from relationship' do
+      get '/authors/1/books'
+      expect(last_response).to be_ok
       expect(JSON.parse(last_response.body).length).to eq(2)
+    end
+
+    it 'returns one from relationship' do
+      get '/authors/1/books/1'
+      expect(last_response).to be_ok
+      expect(JSON.parse(last_response.body)['title'])
+        .to eq('Wind in the willows')
+    end
+
+    it 'returns deeply nested entity' do
+      get '/authors/1/books/1/author'
+      expect(last_response).to be_ok
+      expect(JSON.parse(last_response.body)['name'])
+        .to eq('Dan')
     end
 
     it 'return one' do
       get '/books/1'
-      expect(last_response).to be_ok
       expect(JSON.parse(last_response.body)['title'])
         .to eq('Wind in the willows')
     end
