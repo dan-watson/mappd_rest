@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'activerecord', '>=5.2.0'
-gem 'grape', '>=1.0.3'
-gem 'mappd'
+gem 'activerecord', '>=5.2.2'
+gem 'grape', '>=1.2.3'
+gem 'mappd', '~> 5.2.2'
 gem 'rake'
 gem 'sqlite3'
 
