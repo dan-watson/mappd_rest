@@ -1,3 +1,3 @@
 module MappdRest
-  VERSION = '5.2.2'.freeze
+  VERSION = '6.1.4'.freeze
 end

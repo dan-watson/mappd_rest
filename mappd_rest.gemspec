@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
                     .split("\n").map { |f| File.basename(f) }
   s.require_paths = ['lib']
 
-  s.add_dependency 'activerecord', '>=5.2.2'
-  s.add_dependency 'grape', '>=1.2.3'
+  s.required_ruby_version = '>= 2.6'
+
+  s.add_dependency 'activerecord', '>=6.1.4'
+  s.add_dependency 'grape', '>=1.5.3'
 end

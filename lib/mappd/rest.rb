@@ -5,9 +5,7 @@ module Mappd
     cattr_accessor :auth_method
 
     before do
-      unless Rest.auth_method.call(request.headers['X-Access-Token'])
-        error!('Access Denied', 401)
-      end
+      error!('Access Denied', 401) unless access_token?
     end
 
     rescue_from ActiveRecord::RecordNotFound do |e|
@@ -19,6 +17,10 @@ module Mappd
     end
 
     helpers do
+      def access_token?
+        Rest.auth_method.call(request.headers['X-Access-Token'])
+      end
+
       def resource
         params[:resource].singularize.titlecase.constantize
       end
@@ -29,6 +31,7 @@ module Mappd
 
       def limiter(relation)
         return relation unless relation.is_a?(ActiveRecord::Relation)
+
         relation = relation.offset(params[:offset]) if params[:offset]
         relation = relation.limit(params[:limit]) if params[:limit]
         relation
