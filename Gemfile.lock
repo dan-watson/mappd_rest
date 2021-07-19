@@ -1,9 +1,10 @@
 PATH
   remote: .
   specs:
-    mappd_rest (6.1.4)
+    mappd_rest (6.1.4.1)
       activerecord (>= 6.1.4)
       grape (>= 1.5.3)
+      mappd (>= 6.1.4.1)
 
 GEM
   remote: http://rubygems.org/
@@ -75,7 +76,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     lumberjack (1.2.8)
-    mappd (6.1.4)
+    mappd (6.1.4.1)
       activerecord (>= 6.0.3)
     method_source (1.0.0)
     minitest (5.14.4)
@@ -148,7 +149,7 @@ DEPENDENCIES
   grape (>= 1.5.3)
   guard-rspec
   guard-rubocop
-  mappd (~> 6.1.4)
+  mappd (~> 6.1.4.1)
   mappd_rest!
   rack-test
   rake

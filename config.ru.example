@@ -1,0 +1,22 @@
+require_relative 'lib/mappd_rest'
+
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3',
+                                        database: 'db/test.db')
+
+class Thing < ActiveRecord::Base
+  field :thing, :string
+end
+
+Thing.migrate!
+
+Thing.create!(thing: 'Thing - 1')
+Thing.create!(thing: 'Thing - 2')
+
+Mappd::Rest.auth_method = lambda { |token|
+  true
+}
+
+# config.ru
+run Mappd::Rest
+
+# curl localhost:3000/things

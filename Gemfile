@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'activerecord', '>=6.1.4'
 gem 'grape', '>=1.5.3'
-gem 'mappd', '~> 6.1.4'
+gem 'mappd', '~> 6.1.4.1'
 gem 'rake'
 gem 'sqlite3'
 

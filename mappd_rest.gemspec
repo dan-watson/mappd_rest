@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activerecord', '>=6.1.4'
   s.add_dependency 'grape', '>=1.5.3'
+  s.add_dependency 'mappd', '>=6.1.4.1'
 end
